@@ -69,7 +69,7 @@ pushd "$SOURCE_DIR"
 			CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
 				  --enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
 				  --prefix=${stage} --libdir="$stage/lib/release"
-			make -j 6 && make install && make distclean
+			make -j `nproc` && make install && make distclean
         ;;
     esac
     mkdir -p "$stage/LICENSES"
