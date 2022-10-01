@@ -65,7 +65,7 @@ pushd "$SOURCE_DIR"
 			#--enable-xrender        turn on Xrender support [default=yes]
 
 
-			FLAGS="-m$AUTOBUILD_ADDRSIZE $LL_BUILD_RELEASE"
+			FLAGS="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
 			CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
 				  --enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
 				  --prefix=${stage} --libdir="$stage/lib/release"
