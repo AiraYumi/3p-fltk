@@ -65,11 +65,19 @@ pushd "$SOURCE_DIR"
 			#--enable-xrender        turn on Xrender support [default=yes]
 
 
-			FLAGS="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
-			CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
+	    if [ "${AUTOBUILD_ARCH}" == "aarch64" ]
+	    then
+		   FLAGS="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
+		   CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure  \
 				  --enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
 				  --prefix=${stage} --libdir="$stage/lib/release"
-			make -j `nproc` && make install && make distclean
+	    else
+		   FLAGS="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
+		   CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
+				  --enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
+				  --prefix=${stage} --libdir="$stage/lib/release"
+	    fi
+	    make -j `nproc` && make install && make distclean
         ;;
     esac
     mkdir -p "$stage/LICENSES"
