@@ -9,7 +9,7 @@ set -e
 # bleat on references to undefined shell variables
 set -u
 
-VERSION="1.3.5"
+VERSION="1.3.9"
 SOURCE_DIR="fltk-${VERSION}"
 
 top="$(pwd)"
