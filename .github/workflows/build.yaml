@@ -1,20 +1,17 @@
 name: Build
-on: [push]
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: [v*]
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-22.04]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-22.04 
     steps:
       - uses: secondlife/action-autobuild@v3
-        with:
-          addrsize: "64"
   release:
     needs: build
     runs-on: [ubuntu-latest]
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - uses: secondlife/action-autobuild-release@v3
-        with:
-          public: true
