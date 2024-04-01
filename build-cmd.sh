@@ -33,14 +33,6 @@ echo "${VERSION}.${build}" > "${stage}/VERSION.txt"
 
 pushd "$SOURCE_DIR"
     case "$AUTOBUILD_PLATFORM" in
-
-        # ------------------------ windows, windows64 ------------------------
-        windows*)
-        ;;
-
-        # ------------------------- darwin, darwin64 -------------------------
-        darwin*)
-			;;
         linux64)
 			#--disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
 			#--enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
