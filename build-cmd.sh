@@ -33,14 +33,6 @@ echo "${VERSION}.${build}" > "${stage}/VERSION.txt"
 
 pushd "$SOURCE_DIR"
     case "$AUTOBUILD_PLATFORM" in
-
-        # ------------------------ windows, windows64 ------------------------
-        windows*)
-        ;;
-
-        # ------------------------- darwin, darwin64 -------------------------
-        darwin*)
-			;;
         linux64)
 			#--disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
 			#--enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
@@ -65,18 +57,10 @@ pushd "$SOURCE_DIR"
 			#--enable-xrender        turn on Xrender support [default=yes]
 
 
-	    if [ "${AUTOBUILD_ARCH}" == "aarch64" ]
-	    then
-		   FLAGS="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
-		   CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure  \
-				  --enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
-				  --prefix=${stage} --libdir="$stage/lib/release"
-	    else
-		   FLAGS="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
-		   CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
-				  --enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
-				  --prefix=${stage} --libdir="$stage/lib/release"
-	    fi
+		FLAGS="$LL_BUILD_RELEASE"
+		CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
+				--enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
+				--prefix=${stage} --libdir="$stage/lib/release"
 	    make -j `nproc` && make install && make distclean
         ;;
     esac
