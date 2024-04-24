@@ -9,8 +9,8 @@ set -e
 # bleat on references to undefined shell variables
 set -u
 
-VERSION="1.3.9"
-SOURCE_DIR="fltk-${VERSION}"
+VERSION="1.4.0"
+SOURCE_DIR="fltk"
 
 top="$(pwd)"
 stage="$top"/stage
@@ -56,7 +56,7 @@ pushd "$SOURCE_DIR"
 			#--enable-xcursor        turn on Xcursor support [default=yes]
 			#--enable-xrender        turn on Xrender support [default=yes]
 
-
+		./autogen.sh
 		FLAGS="$LL_BUILD_RELEASE"
 		CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
 				--enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
