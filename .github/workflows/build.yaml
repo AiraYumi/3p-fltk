@@ -12,8 +12,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y \
-            libwayland-client-dev wayland-protocols \
-            libwayland-cursor-dev libxkbcommon-dev libpangocairo
+            libwayland-client0 wayland-protocols \
+            libwayland-cursor0 libxkbcommon-dev libpangocairo-1.0-0
       - uses: secondlife/action-autobuild@v3
   release:
     needs: build
