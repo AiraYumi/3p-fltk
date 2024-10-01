@@ -8,7 +8,21 @@ jobs:
   build:
     runs-on: ubuntu-22.04 
     steps:
-      - uses: secondlife/action-autobuild@v4
+      - name: Update apt
+        if: runner.os == 'Linux'
+        run: sudo apt update
+
+      - name: Setup Linux Build Dependencies
+        if: runner.os == 'Linux'
+        run: >
+          sudo apt install -y \
+            libpango1.0-dev libpangocairo-1.0-0 \
+            libwayland-dev wayland-protocols \
+            libxkbcommon-dev \
+            libglew-dev libdecor-0-dev
+      
+      - name: Build with autobuild
+        uses: secondlife/action-autobuild@v4
   release:
     needs: build
     runs-on: [ubuntu-latest]

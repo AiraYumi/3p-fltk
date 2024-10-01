@@ -60,6 +60,7 @@ pushd "$SOURCE_DIR"
 		FLAGS="$LL_BUILD_RELEASE"
 		CFLAGS="${FLAGS}" CXXFLAGS="${FLAGS}" ./configure --enable-localjpeg --enable-localzlib --enable-localpng \
 				--enable-xdbe=no --enable-xcursor=no --enable-xfixes=no --enable-xrender=no --enable-xft=no \
+    				--enable-wayland=yes \
 				--prefix=${stage} --libdir="$stage/lib/release"
 	    make -j `nproc` && make install && make distclean
         ;;
